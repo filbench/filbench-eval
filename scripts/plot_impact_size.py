@@ -3,7 +3,7 @@ import pandas as pd
 from pathlib import Path
 import matplotlib.pyplot as plt
 
-from plot.utils import COLORS, PLOT_PARAMS
+from scripts.utils import COLORS, PLOT_PARAMS
 
 plt.rcParams.update(PLOT_PARAMS)
 
