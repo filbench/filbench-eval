@@ -1,5 +1,6 @@
 import argparse
 import pandas as pd
+import numpy as np
 from pathlib import Path
 import matplotlib.pyplot as plt
 
@@ -42,6 +43,10 @@ def main():
             color=color,
             label=category,
         )
+
+    # z = np.polyfit(df["# Parameters"], df["Average"], 1)
+    # p = np.poly1d(z)
+    # ax.plot(df["# Parameters"], p(df["# Parameters"]), "r--", alpha=0.7)
 
     ax.set_xlabel("\# Parameters (B)")
     ax.set_ylabel("FilBench Score")
