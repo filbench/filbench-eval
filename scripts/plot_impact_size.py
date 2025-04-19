@@ -13,6 +13,7 @@ def main():
     parser = argparse.ArgumentParser(description="Plot impact of LM size.")
     parser.add_argument("--input_path", type=Path, help="Path to the leaderboard results.")
     parser.add_argument("--output_path", type=Path, default="plots/impact_of_lm_size.pdf", help="Path to save the results.")
+    parser.add_argument("--max_params", type=int, default=400, help="Set the maximum param size to show in graph.")
     parser.add_argument("--figsize", type=int, nargs=2, default=[10, 10], help="Matplotlib figure size.")
     args = parser.parse_args()
     # fmt: on
@@ -20,21 +21,23 @@ def main():
     df = pd.read_csv(args.input_path)
     df = df[df["Incomplete"]]  # It is inversed because of how toggle works in Gradio
     df = df[df["# Parameters"] != -1]  # Only keep models where # Parameters != -1
-    df = df.reset_index(drop=True)
     df = df[["Model", "Average", "# Parameters", "Multilingual"]]
+    df = df[df["# Parameters"] <= args.max_params]
+    df = df.reset_index(drop=True)
 
     fig, ax = plt.subplots(figsize=args.figsize)
 
     colors = {
         "Multilingual": COLORS.get("warm_blue"),
-        "SEA-Focused": COLORS.get("heritage"),
+        "SEA-Focused": COLORS.get("warm_crest"),
     }
     for category, color in colors.items():
         mask = df["Multilingual"] == category
         ax.scatter(
             df.loc[mask, "# Parameters"],
             df.loc[mask, "Average"],
-            s=60,
+            s=120,
+            alpha=0.9,
             color=color,
             label=category,
         )

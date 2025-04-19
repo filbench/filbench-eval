@@ -22,6 +22,7 @@ COLORS = {
     "indigo": " #EBEDFB",
     "heritage": "#85B09A",
     "warm_blue": "#00BDB6",
+    "warm_crest": "#FFC392",
 }
 
 CATEGORY_COLORS = {
