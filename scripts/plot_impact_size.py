@@ -15,6 +15,7 @@ def main():
     parser.add_argument("--output_path", type=Path, default="plots/impact_of_lm_size.pdf", help="Path to save the results.")
     parser.add_argument("--max_params", type=int, default=400, help="Set the maximum param size to show in graph.")
     parser.add_argument("--figsize", type=int, nargs=2, default=[10, 10], help="Matplotlib figure size.")
+    parser.add_argument("--svg", action="store_true", default=False, help="If set, will also save an SVG version.")
     args = parser.parse_args()
     # fmt: on
 
@@ -45,10 +46,17 @@ def main():
     ax.set_xlabel("\# Parameters (B)")
     ax.set_ylabel("FilBench Score")
     ax.grid(color="gray", alpha=0.2, which="both")
-    # ax.set_aspect("equal")
+
+    output_path = Path(args.output_path)
 
     plt.tight_layout()
-    fig.savefig(args.output_path, bbox_inches="tight")
+
+    fig.savefig(output_path, bbox_inches="tight")
+    if args.svg:
+        print("Also saving an SVG version")
+        fig.savefig(output_path.with_suffix(".svg"), bbox_inches="tight")
+
+    print(df)
 
 
 if __name__ == "__main__":
