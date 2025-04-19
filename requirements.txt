@@ -1,0 +1,8 @@
+pandas
+matplotlib
+seaborn
+numpy
+# Dev
+black
+pre-commit
+isort
