@@ -20,6 +20,8 @@ COLORS = {
     "purple": "#F2ECF8",
     "green": "#DFF2EA",
     "indigo": " #EBEDFB",
+    "heritage": "#85B09A",
+    "warm_blue": "#00BDB6",
 }
 
 CATEGORY_COLORS = {
