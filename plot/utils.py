@@ -21,3 +21,10 @@ COLORS = {
     "green": "#DFF2EA",
     "indigo": " #EBEDFB",
 }
+
+CATEGORY_COLORS = {
+    "CN": COLORS.get("blue"),
+    "RC": COLORS.get("crest"),
+    "CK": COLORS.get("cherry"),
+    "GN": COLORS.get("indigo"),
+}
