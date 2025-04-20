@@ -16,7 +16,7 @@ def main():
     parser.add_argument("--input_path", type=Path, help="Path to the leaderboard results.")
     parser.add_argument("--output_path", type=Path, default="plots/impact_of_lm_size.pdf", help="Path to save the results.")
     parser.add_argument("--max_params", type=int, default=400, help="Set the maximum param size to show in graph.")
-    parser.add_argument("--figsize", type=int, nargs=2, default=[10, 10], help="Matplotlib figure size.")
+    parser.add_argument("--figsize", type=int, nargs=2, default=[6, 6], help="Matplotlib figure size.")
     parser.add_argument("--svg", action="store_true", default=False, help="If set, will also save an SVG version.")
     args = parser.parse_args()
     # fmt: on
