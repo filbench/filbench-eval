@@ -44,6 +44,7 @@ def main():
         ("meta-llama/Llama-3.1-8B-Instruct", "aisingapore/llama3.1-8b-cpt-sea-lionv3-instruct"),
         # fmt: on
     ]
+    print(df)
 
     # Create data for plotting
     model_names = ["Llama-3.1-70B", "Gemma-2-9B", "Llama-3.1-8B"]
@@ -84,7 +85,7 @@ def main():
     ax.set_xticks(x)
     # ax.set_xticklabels(model_names)
     ax.set_xticklabels([])
-    ax.set_ylim(50, 62)  # Set y-axis limits to better visualize differences
+    ax.set_ylim(50, 61)  # Set y-axis limits to better visualize differences
 
     # Add a legend and adjust layout
     ax.legend(frameon=False)
