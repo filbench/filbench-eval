@@ -19,7 +19,7 @@ COLORS = {
     "cherry": "#F2CAD8",
     "purple": "#F2ECF8",
     "green": "#DFF2EA",
-    "indigo": " #EBEDFB",
+    "indigo": "#EBEDFB",
     "heritage": "#85B09A",
     "warm_blue": "#00BDB6",
     "warm_crest": "#FFC392",
