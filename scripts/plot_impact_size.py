@@ -26,6 +26,8 @@ def main():
     df = df[["Model", "Average", "# Parameters", "Multilingual"]]
     df = df[df["# Parameters"] <= args.max_params]
     df = df.reset_index(drop=True)
+    spearman_corr = df["Average"].corr(df["# Parameters"], method="spearman")
+    print(f"Spearman correlation: {spearman_corr}")
 
     fig, ax = plt.subplots(figsize=args.figsize)
 

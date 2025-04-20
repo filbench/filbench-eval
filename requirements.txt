@@ -6,5 +6,6 @@ matplotlib
 numpy
 pandas
 pre-commit
+scipy
 seaborn
 tabulate
