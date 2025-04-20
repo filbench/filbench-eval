@@ -3,6 +3,7 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
+from scipy.stats import spearmanr
 
 from scripts.utils import COLORS, PLOT_PARAMS
 
@@ -26,8 +27,8 @@ def main():
     df = df[["Model", "Average", "# Parameters", "Multilingual"]]
     df = df[df["# Parameters"] <= args.max_params]
     df = df.reset_index(drop=True)
-    spearman_corr = df["Average"].corr(df["# Parameters"], method="spearman")
-    print(f"Spearman correlation: {spearman_corr}")
+    rho, p_value = spearmanr(df["Average"], df["# Parameters"])
+    print(f"Spearman rho: {rho}, p-value: {p_value:.4f}")  # Significant if p < 0.05
 
     fig, ax = plt.subplots(figsize=args.figsize)
 
