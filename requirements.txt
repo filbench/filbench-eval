@@ -1,8 +1,10 @@
-pandas
-matplotlib
-seaborn
-numpy
 # Dev
 black
-pre-commit
 isort
+Jinja2
+matplotlib
+numpy
+pandas
+pre-commit
+seaborn
+tabulate
