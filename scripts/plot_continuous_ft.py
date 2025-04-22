@@ -85,7 +85,7 @@ def main():
     ax.set_xticks(x)
     # ax.set_xticklabels(model_names)
     ax.set_xticklabels([])
-    ax.set_ylim(50, 61)  # Set y-axis limits to better visualize differences
+    ax.set_ylim(48, 64)  # Set y-axis limits to better visualize differences
 
     # Add a legend and adjust layout
     ax.legend(frameon=False)
