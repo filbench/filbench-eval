@@ -176,3 +176,4 @@ cython_debug/
 # Data
 data
 plots/
+.DS_Store
