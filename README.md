@@ -13,4 +13,3 @@
 This repository contains all experiments and relevant analyses for FilBench, an Open LLM leaderboard for Filipino.
 We curated an evaluation benchmark consisting of four major capabilities: Cultural Knowledge, Generation, Reading Comprehension, and Classical NLP.
 Then, we evaluated over 20+ models of different parameters, model families, and multilingual support.
-
