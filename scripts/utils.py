@@ -23,6 +23,7 @@ COLORS = {
     "heritage": "#85B09A",
     "warm_blue": "#00BDB6",
     "warm_crest": "#FFC392",
+    "slate": "#B5BDC8",
 }
 
 CATEGORY_COLORS = {
