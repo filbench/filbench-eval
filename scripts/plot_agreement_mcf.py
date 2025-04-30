@@ -15,27 +15,31 @@ from scripts.utils import COLORS, PLOT_PARAMS
 plt.rcParams.update(PLOT_PARAMS)
 
 
-DEFAULT_MODELS = [
-    "aisingapore/Llama-SEA-LION-v3-70B-IT",
-    "sail/Sailor2-20B-Chat",
-    "sail/Sailor2-8B-Chat",
-    "aisingapore/gemma2-9b-cpt-sea-lionv3-instruct",
-    "SeaLLMs/SeaLLMs-v3-7B-Chat",
-    "aisingapore/llama3.1-8b-cpt-sea-lionv3-instruct",
-    "SeaLLMs/SeaLLMs-v3-1.5B-Chat",
-]
+MODEL_SET = {
+    "sea": [
+        "aisingapore/Llama-SEA-LION-v3-70B-IT",
+        "sail/Sailor2-20B-Chat",
+        "sail/Sailor2-8B-Chat",
+        "aisingapore/gemma2-9b-cpt-sea-lionv3-instruct",
+        "SeaLLMs/SeaLLMs-v3-7B-Chat",
+        "aisingapore/llama3.1-8b-cpt-sea-lionv3-instruct",
+        "SeaLLMs/SeaLLMs-v3-1.5B-Chat",
+    ]
+}
 
-DEFAULT_TASKS = [
-    "filbench|balita_tgl_mcf|0",
-    "filbench|cebuaner_ceb_mcf|0",
-    "filbench|dengue_filipino_fil|0",
-    "filbench|firecs_fil_mcf|0",
-    "filbench|sib200_tgl_mcf|0",
-    "filbench|sib200_ceb_mcf|0",
-    "filbench|universalner_tgl_mcf",
-    "filbench|universalner_ceb_mcf",
-    "filbench|tlunifiedner_tgl_mcf|0",
-]
+TASK_SET = {
+    "cn": [
+        "filbench|balita_tgl_mcf|0",
+        "filbench|cebuaner_ceb_mcf|0",
+        "filbench|dengue_filipino_fil|0",
+        "filbench|firecs_fil_mcf|0",
+        "filbench|sib200_tgl_mcf|0",
+        "filbench|sib200_ceb_mcf|0",
+        "filbench|universalner_tgl_mcf",
+        "filbench|universalner_ceb_mcf",
+        "filbench|tlunifiedner_tgl_mcf|0",
+    ]
+}
 
 
 def format_model(model_name: str) -> str:
@@ -49,9 +53,8 @@ def format_task(task_name: str) -> str:
 def main():
     # fmt: off
     parser = argparse.ArgumentParser(description="Check agreement and plot.")
-    parser.add_argument("-m", "--model_names", nargs="+", default=DEFAULT_MODELS, help="Model names to check agreement on.")
-    parser.add_argument("-t", "--task_names", nargs="+", default=DEFAULT_TASKS, help="Tasks to check model agreement on (e.g., filbench|balita_tgl_mcf|0).")
-    # parser.add_argument("-n", "--num_samples", type=int, default=100, help="Number of samples for computing agreement (higher is more reliable).")
+    parser.add_argument("--model_set", type=str, choices=["sea", "top5"], default="sea", help="Model set to check agreement on.")
+    parser.add_argument("--task_set", nargs="+", choices=["cn", "ck"], default="cn", help="Task set to check model agreement on.")
     parser.add_argument("--output_path", type=Path, default="plots/agreement_mcf.pdf", help="Path to save the results.")
     parser.add_argument("--cache", type=Path, default="data/agreement_mcf.jsonl", help="Path to save the results.")
     parser.add_argument("--figsize", type=int, nargs=2, default=[6, 6], help="Matplotlib figure size.")
@@ -59,7 +62,10 @@ def main():
     args = parser.parse_args()
     # fmt: on
 
-    task_model_results = get_task_model_results(args.model_names, args.task_names)
+    model_names = MODEL_SET[args.model_set]
+    task_names = TASK_SET[args.task_set]
+
+    task_model_results = get_task_model_results(model_names, task_names)
     task_agreement_table = combine_model_results(task_model_results)
     task_fleiss_kappa: dict[str, Union[str, int, float]] = [
         {
