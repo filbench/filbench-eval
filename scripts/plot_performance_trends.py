@@ -45,6 +45,10 @@ def main():
     average = df[numeric_cols].mean().to_dict()
     print("Average", average)
 
+    # Stdev perf across all
+    std = df[numeric_cols].std().to_dict()
+    print("Stdev", std)
+
     fig, ax = plt.subplots(figsize=args.figsize)
     pd.plotting.parallel_coordinates(
         df,
