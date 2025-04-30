@@ -25,7 +25,17 @@ DEFAULT_MODELS = [
     "SeaLLMs/SeaLLMs-v3-1.5B-Chat",
 ]
 
-DEFAULT_TASKS = ["filbench|balita_tgl_mcf|0"]
+DEFAULT_TASKS = [
+    "filbench|balita_tgl_mcf|0",
+    "filbench|cebuaner_ceb_mcf|0",
+    "filbench|dengue_filipino_fil|0",
+    "filbench|firecs_fil_mcf|0",
+    "filbench|sib200_tgl_mcf|0",
+    "filbench|sib200_ceb_mcf|0",
+    "filbench|universalner_tgl_mcf",
+    "filbench|universalner_ceb_mcf",
+    "filbench|tlunifiedner_tgl_mcf|0",
+]
 
 
 def format_model(model_name: str) -> str:
@@ -70,7 +80,7 @@ def main():
 
 def get_task_model_results(
     model_names: list[str], task_names: list[str]
-) -> dict[str, dict[str.pd.DataFrame]]:
+) -> dict[str, dict[str, pd.DataFrame]]:
     task_model_results: dict[str, dict[str, pd.DataFrame]] = {}
     for task in task_names:
         task_model_results[task] = {}
