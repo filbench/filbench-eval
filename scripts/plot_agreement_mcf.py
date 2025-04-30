@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from datasets import load_dataset
+from functools import reduce
 
 from scripts.utils import COLORS, PLOT_PARAMS
 
@@ -53,18 +54,12 @@ def main():
 
         for model in args.model_names:
             results_ds_name = f"UD-Filipino/details_{format_model(model)}_private"
-            df = load_dataset(
-                results_ds_name,
-                format_task(task),
-                split="latest",
-            ).to_pandas()
-            df["prompt_hash"] = df["example"].apply(
-                lambda x: hashlib.sha256(x.encode()).hexdigest()
-            )
-            df["mcf_predictions"] = df["predictions"].apply(
-                lambda x: np.argmax([bool(idx[1]) for idx in x])
-            )
+            # fmt: off
+            df = load_dataset(results_ds_name, format_task(task), split="latest").to_pandas()
+            df["prompt_hash"] = df["example"].apply(lambda x: hashlib.sha256(x.encode()).hexdigest())
+            df["mcf_predictions"] = df["predictions"].apply(lambda x: np.argmax([bool(idx[1]) for idx in x]))
             df["gold"] = df["gold_index"].apply(lambda x: int(x[0]))
+            # fmt: on
             df = df[
                 [
                     "prompt_hash",
@@ -77,7 +72,78 @@ def main():
 
             task_model_results[task][model] = df
 
+    task_agreement = combine_model_results(task_model_results)
     breakpoint()
+
+
+def combine_model_results(
+    task_model_results: dict[str, dict[str, pd.DataFrame]],
+) -> dict[str, pd.DataFrame]:
+    combined_results = {}
+
+    # Process each task separately
+    for task, model_dfs in task_model_results.items():
+        if not model_dfs:
+            continue
+
+        # Find common prompt_hashes across all models for this task
+        prompt_hash_sets = []
+        for model, df in model_dfs.items():
+            if "prompt_hash" in df.columns:
+                prompt_hash_sets.append(set(df["prompt_hash"]))
+
+        # Get intersection of prompt_hashes if there are any models
+        if prompt_hash_sets:
+            common_prompt_hashes = reduce(
+                lambda x, y: x.intersection(y), prompt_hash_sets
+            )
+        else:
+            continue
+
+        # Filter each model's DataFrame to only include common prompt_hashes
+        # and select only necessary columns
+        filtered_dfs = {}
+        for model, df in model_dfs.items():
+            if "prompt_hash" in df.columns:
+                filtered_df = df[df["prompt_hash"].isin(common_prompt_hashes)].copy()
+
+                # Keep only needed columns
+                cols_to_keep = ["prompt_hash", "instruction", "example", "gold"]
+                if "mcf_predictions" in filtered_df.columns:
+                    cols_to_keep.append("mcf_predictions")
+
+                # Only keep columns that exist in the DataFrame
+                valid_cols = [col for col in cols_to_keep if col in filtered_df.columns]
+                filtered_df = filtered_df[valid_cols]
+
+                # Rename mcf_predictions column to model name
+                if "mcf_predictions" in filtered_df.columns:
+                    filtered_df = filtered_df.rename(columns={"mcf_predictions": model})
+
+                filtered_dfs[model] = filtered_df
+
+        # Merge all DataFrames for this task
+        if filtered_dfs:
+            # Start with the first DataFrame as base
+            base_model = next(iter(filtered_dfs))
+            result_df = filtered_dfs[base_model].copy()
+
+            # Merge with other models' DataFrames
+            for model, df in filtered_dfs.items():
+                if model != base_model:
+                    # Only merge the model column (renamed from mcf_predictions)
+                    if model in df.columns:
+                        merge_cols = ["prompt_hash"]
+                        result_df = pd.merge(
+                            result_df,
+                            df[merge_cols + [model]],
+                            on=merge_cols,
+                            how="inner",
+                        )
+
+            combined_results[task] = result_df
+
+    return combined_results
 
 
 if __name__ == "__main__":
