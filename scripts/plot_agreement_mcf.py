@@ -8,6 +8,7 @@ import numpy as np
 from datasets import load_dataset
 from functools import reduce
 from statsmodels.stats.inter_rater import fleiss_kappa
+from typing import Union
 
 from scripts.utils import COLORS, PLOT_PARAMS
 
@@ -41,20 +42,41 @@ def main():
     parser.add_argument("-m", "--model_names", nargs="+", default=DEFAULT_MODELS, help="Model names to check agreement on.")
     parser.add_argument("-t", "--task_names", nargs="+", default=DEFAULT_TASKS, help="Tasks to check model agreement on (e.g., filbench|balita_tgl_mcf|0).")
     # parser.add_argument("-n", "--num_samples", type=int, default=100, help="Number of samples for computing agreement (higher is more reliable).")
-    parser.add_argument("--output_path", type=Path, default="plots/impact_of_lm_size.pdf", help="Path to save the results.")
+    parser.add_argument("--output_path", type=Path, default="plots/agreement_mcf.pdf", help="Path to save the results.")
+    parser.add_argument("--cache", type=Path, default="data/agreement_mcf.jsonl", help="Path to save the results.")
     parser.add_argument("--figsize", type=int, nargs=2, default=[6, 6], help="Matplotlib figure size.")
     parser.add_argument("--svg", action="store_true", default=False, help="If set, will also save an SVG version.")
     args = parser.parse_args()
     # fmt: on
 
+    task_model_results = get_task_model_results(args.model_names, args.task_names)
+    task_agreement_table = combine_model_results(task_model_results)
+    task_fleiss_kappa: dict[str, Union[str, int, float]] = [
+        {
+            "task": task,
+            "n_samples": len(agreement_table),
+            "fleiss_kappa": fleiss_kappa(
+                prepare_data_for_fleiss_kappa(
+                    agreement_table.drop(
+                        columns=["prompt_hash", "instruction", "example", "gold"]
+                    )
+                )
+            ),
+        }
+        for task, agreement_table in task_agreement_table.items()
+    ]
+    breakpoint()
+
+
+def get_task_model_results(
+    model_names: list[str], task_names: list[str]
+) -> dict[str, dict[str.pd.DataFrame]]:
     task_model_results: dict[str, dict[str, pd.DataFrame]] = {}
-
-    for task in args.task_names:
-
+    for task in task_names:
         task_model_results[task] = {}
-
-        for model in args.model_names:
+        for model in model_names:
             results_ds_name = f"UD-Filipino/details_{format_model(model)}_private"
+            print(f"Loading results for {model} ({task})...")
             # fmt: off
             df = load_dataset(results_ds_name, format_task(task), split="latest").to_pandas()
             df["prompt_hash"] = df["example"].apply(lambda x: hashlib.sha256(x.encode()).hexdigest())
@@ -72,9 +94,7 @@ def main():
             ]
 
             task_model_results[task][model] = df
-
-    task_agreement = combine_model_results(task_model_results)
-    breakpoint()
+    return task_model_results
 
 
 def combine_model_results(
@@ -145,6 +165,24 @@ def combine_model_results(
             combined_results[task] = result_df
 
     return combined_results
+
+
+def prepare_data_for_fleiss_kappa(df):
+    """
+    Convert a dataframe of model predictions to the format required by statsmodels.
+    """
+    n_categories = len(np.unique(df.values))
+    n_samples = df.shape[0]
+
+    # Initialize the table
+    table = np.zeros((n_samples, n_categories))
+
+    # Fill the table with counts
+    for i in range(n_samples):
+        for category in range(n_categories):
+            table[i, category] = (df.iloc[i, :] == category).sum()
+
+    return table
 
 
 if __name__ == "__main__":
