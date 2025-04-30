@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 from datasets import load_dataset
 from functools import reduce
+from statsmodels.stats.inter_rater import fleiss_kappa
 
 from scripts.utils import COLORS, PLOT_PARAMS
 
