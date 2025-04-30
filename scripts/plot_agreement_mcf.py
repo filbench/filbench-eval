@@ -1,8 +1,10 @@
 import argparse
 from pathlib import Path
 
+import hashlib
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 from datasets import load_dataset
 
 from scripts.utils import COLORS, PLOT_PARAMS
@@ -30,11 +32,31 @@ def main():
     args = parser.parse_args()
     # fmt: on
 
+    task_model_results: dict[str, dict[str, pd.DataFrame]] = {}
     for model in args.model_names:
         results_ds_name = f"UD-Filipino/details_{format_model(model)}_private"
         for task in args.task_names:
-            ds = load_dataset(results_ds_name, task)
-            breakpoint()
+            df = load_dataset(
+                results_ds_name,
+                format_task(task),
+                split="latest",
+            ).to_pandas()
+            df["prompt_hash"] = df["example"].apply(
+                lambda x: hashlib.sha256(x.encode()).hexdigest()
+            )
+            df["mcf_predictions"] = df["predictions"].apply(
+                lambda x: np.argmax([bool(idx[1]) for idx in x])
+            )
+            df["gold"] = df["gold_index"].apply(lambda x: int(x[0]))
+            df = df[
+                [
+                    "prompt_hash",
+                    "instruction",
+                    "example",
+                    "mcf_predictions",
+                    "gold",
+                ]
+            ]
 
 
 if __name__ == "__main__":
