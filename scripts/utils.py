@@ -122,4 +122,10 @@ TASK_SET = {
     "wsd": [
         "filbench|stingraybench_semantic_appropriateness_tgl_mcf|0",
     ],
+    "readability": ["filbench|readability_ceb_mcf|0"],
+    "reading_comp": [
+        "filbench|belebele_ceb_mcf|0",
+        "filbench|belebele_fil_mcf|0",
+    ],
+    "nli": ["filbench|newsphnli_fil_mcf|0"],
 }
