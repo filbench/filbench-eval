@@ -31,13 +31,17 @@ TASK_SET = {
     "cn": [
         "filbench|balita_tgl_mcf|0",
         "filbench|cebuaner_ceb_mcf|0",
-        "filbench|dengue_filipino_fil|0",
+        "filbench|dengue_filipino_fil|absent|0",
+        "filbench|dengue_filipino_fil|dengue|0",
+        "filbench|dengue_filipino_fil|health|0",
+        "filbench|dengue_filipino_fil|mosquito|0",
+        "filbench|dengue_filipino_fil|sick|0",
         "filbench|firecs_fil_mcf|0",
         "filbench|sib200_tgl_mcf|0",
         "filbench|sib200_ceb_mcf|0",
-        "filbench|universalner_tgl_mcf",
-        "filbench|universalner_ceb_mcf",
         "filbench|tlunifiedner_tgl_mcf|0",
+        "filbench|universalner_tgl_mcf|0",
+        "filbench|universalner_ceb_mcf|0",
     ]
 }
 
