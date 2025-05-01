@@ -28,21 +28,28 @@ MODEL_SET = {
 }
 
 TASK_SET = {
-    "cn": [
+    "text-classification": [
         "filbench|balita_tgl_mcf|0",
-        "filbench|cebuaner_ceb_mcf|0",
         "filbench|dengue_filipino_fil|absent|0",
         "filbench|dengue_filipino_fil|dengue|0",
         "filbench|dengue_filipino_fil|health|0",
         "filbench|dengue_filipino_fil|mosquito|0",
         "filbench|dengue_filipino_fil|sick|0",
-        "filbench|firecs_fil_mcf|0",
         "filbench|sib200_tgl_mcf|0",
         "filbench|sib200_ceb_mcf|0",
+    ],
+    "ner": [
         "filbench|tlunifiedner_tgl_mcf|0",
         "filbench|universalner_tgl_mcf|0",
         "filbench|universalner_ceb_mcf|0",
-    ]
+        "filbench|cebuaner_ceb_mcf|0",
+    ],
+    "sent": [
+        "filbench|firecs_fil_mcf|0",
+    ],
+    "regional": [
+        "filbench|firecs_filo_mcf|0",
+    ],
 }
 
 
@@ -57,8 +64,8 @@ def format_task(task_name: str) -> str:
 def main():
     # fmt: off
     parser = argparse.ArgumentParser(description="Check agreement and plot.")
-    parser.add_argument("--model_set", type=str, choices=["sea", "top5"], default="sea", help="Model set to check agreement on.")
-    parser.add_argument("--task_set", nargs="+", choices=["cn", "ck"], default="cn", help="Task set to check model agreement on.")
+    parser.add_argument("--model_set", type=str, choices=list(MODEL_SET.keys()), default="sea", help="Model set to check agreement on.")
+    parser.add_argument("--task_set", type=str, choices=list(TASK_SET.keys()), default="text-classification", help="Task set to check model agreement on.")
     parser.add_argument("--output_path", type=Path, default="plots/agreement_mcf.pdf", help="Path to save the results.")
     parser.add_argument("--cache", type=Path, default="data/", help="Path to save the results.")
     parser.add_argument("--figsize", type=int, nargs=2, default=[6, 6], help="Matplotlib figure size.")
@@ -85,6 +92,7 @@ def main():
         }
         for task, agreement_table in task_agreement_table.items()
     ]
+    print(pd.DataFrame(task_fleiss_kappa))
     breakpoint()
 
 
