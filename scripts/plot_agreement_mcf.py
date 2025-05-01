@@ -24,8 +24,8 @@ MODEL_SET = {
     "topfive": [
         "gpt-4o-2024-08-06",
         "Tower-Babel/Babel-83B-Chat",
-        "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
-        "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        # "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+        # "meta-llama/Llama-4-Scout-17B-16E-Instruct",
         "Qwen/Qwen2.5-72B-Instruct",
     ],
 }
