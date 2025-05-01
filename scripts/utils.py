@@ -118,4 +118,8 @@ TASK_SET = {
         "filbench|include_tgl_mcf|language|0",
         "filbench|include_tgl_mcf|driving_license|0",
     ],
+    "cultural_values": ["filbench|kalahi_tgl_mcf|0"],
+    "wsd": [
+        "filbench|stingraybench_semantic_appropriateness_tgl_mcf|0",
+    ],
 }
