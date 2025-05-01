@@ -60,7 +60,7 @@ def main():
     parser.add_argument("--model_set", type=str, choices=["sea", "top5"], default="sea", help="Model set to check agreement on.")
     parser.add_argument("--task_set", nargs="+", choices=["cn", "ck"], default="cn", help="Task set to check model agreement on.")
     parser.add_argument("--output_path", type=Path, default="plots/agreement_mcf.pdf", help="Path to save the results.")
-    parser.add_argument("--cache", type=Path, default="data/agreement_mcf.jsonl", help="Path to save the results.")
+    parser.add_argument("--cache", type=Path, default="data/", help="Path to save the results.")
     parser.add_argument("--figsize", type=int, nargs=2, default=[6, 6], help="Matplotlib figure size.")
     parser.add_argument("--svg", action="store_true", default=False, help="If set, will also save an SVG version.")
     args = parser.parse_args()
