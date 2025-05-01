@@ -10,7 +10,7 @@ from functools import reduce
 from statsmodels.stats.inter_rater import fleiss_kappa
 from typing import Union
 
-from scripts.utils import COLORS, PLOT_PARAMS
+from scripts.utils import COLORS, PLOT_PARAMS, TASK_SET
 
 plt.rcParams.update(PLOT_PARAMS)
 
@@ -25,31 +25,6 @@ MODEL_SET = {
         "aisingapore/llama3.1-8b-cpt-sea-lionv3-instruct",
         "SeaLLMs/SeaLLMs-v3-1.5B-Chat",
     ]
-}
-
-TASK_SET = {
-    "text-classification": [
-        "filbench|balita_tgl_mcf|0",
-        "filbench|dengue_filipino_fil|absent|0",
-        "filbench|dengue_filipino_fil|dengue|0",
-        "filbench|dengue_filipino_fil|health|0",
-        "filbench|dengue_filipino_fil|mosquito|0",
-        "filbench|dengue_filipino_fil|sick|0",
-        "filbench|sib200_tgl_mcf|0",
-        "filbench|sib200_ceb_mcf|0",
-    ],
-    "ner": [
-        "filbench|tlunifiedner_tgl_mcf|0",
-        "filbench|universalner_tgl_mcf|0",
-        "filbench|universalner_ceb_mcf|0",
-        "filbench|cebuaner_ceb_mcf|0",
-    ],
-    "sent": [
-        "filbench|firecs_fil_mcf|0",
-    ],
-    "regional": [
-        "filbench|firecs_filo_mcf|0",
-    ],
 }
 
 
@@ -92,8 +67,11 @@ def main():
         }
         for task, agreement_table in task_agreement_table.items()
     ]
-    print(pd.DataFrame(task_fleiss_kappa))
-    breakpoint()
+    kappa_df = pd.DataFrame(task_fleiss_kappa)
+    # fmt: off
+    weighted_avg = (kappa_df["n_samples"] * kappa_df["fleiss_kappa"]).sum() / kappa_df["n_samples"].sum()
+    print(kappa_df)
+    print(f"Weighted average: {weighted_avg}")
 
 
 def get_task_model_results(
