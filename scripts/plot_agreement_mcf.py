@@ -1,8 +1,6 @@
 import argparse
-from pathlib import Path
 
 import hashlib
-import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from datasets import load_dataset
@@ -10,9 +8,7 @@ from functools import reduce
 from statsmodels.stats.inter_rater import fleiss_kappa
 from typing import Union
 
-from scripts.utils import COLORS, PLOT_PARAMS, TASK_SET
-
-plt.rcParams.update(PLOT_PARAMS)
+from scripts.utils import TASK_SET
 
 
 MODEL_SET = {
@@ -41,10 +37,7 @@ def main():
     parser = argparse.ArgumentParser(description="Check agreement and plot.")
     parser.add_argument("--model_set", type=str, choices=list(MODEL_SET.keys()), default="sea", help="Model set to check agreement on.")
     parser.add_argument("--task_set", type=str, choices=list(TASK_SET.keys()), default="text-classification", help="Task set to check model agreement on.")
-    parser.add_argument("--output_path", type=Path, default="plots/agreement_mcf.pdf", help="Path to save the results.")
-    parser.add_argument("--cache", type=Path, default="data/", help="Path to save the results.")
-    parser.add_argument("--figsize", type=int, nargs=2, default=[6, 6], help="Matplotlib figure size.")
-    parser.add_argument("--svg", action="store_true", default=False, help="If set, will also save an SVG version.")
+    parser.add_argument("--num_samples", type=int, default=-1, help="If set to > 0, will sample instances (good for testing).")
     args = parser.parse_args()
     # fmt: on
 
