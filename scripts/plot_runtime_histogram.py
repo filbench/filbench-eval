@@ -53,11 +53,10 @@ def main():
         runtimes,
         bins=args.bins,
         color=COLORS.get("slate"),
-        density=True,
         edgecolor="black",
         alpha=0.7,
     )
-    ax.set_xlabel("Runtime (minutes)")
+    ax.set_xlabel("Runtime (in minutes)")
     ax.set_ylabel("Frequency")
     plt.tight_layout()
 
