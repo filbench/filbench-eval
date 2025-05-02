@@ -53,6 +53,7 @@ def main():
         runtimes,
         bins=args.bins,
         color=COLORS.get("slate"),
+        density=True,
         edgecolor="black",
         alpha=0.7,
     )
