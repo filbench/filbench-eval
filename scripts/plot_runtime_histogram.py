@@ -1,6 +1,5 @@
 import argparse
 from pathlib import Path
-from scipy.interpolate import make_interp_spline
 import numpy as np
 
 
