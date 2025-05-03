@@ -1,6 +1,7 @@
 import argparse
 import hashlib
 from functools import reduce
+from pathlib import Path
 from typing import Union
 
 import numpy as np
@@ -42,6 +43,7 @@ def main():
     # fmt: off
     parser = argparse.ArgumentParser(description="Check agreement and plot.")
     parser.add_argument("--model_set", type=str, choices=list(MODEL_SET.keys()), default="sea", help="Model set to check agreement on.")
+    parser.add_argument("--output_dir", default=None, help="Where to store results as CSV files")
     parser.add_argument("--task_set", type=str, choices=list(TASK_SET.keys()), default="text-classification", help="Task set to check model agreement on.")
     parser.add_argument("--num_samples", type=int, default=-1, help="If set to > 0, will sample instances (good for testing).")
     args = parser.parse_args()
@@ -52,6 +54,15 @@ def main():
 
     task_model_results = get_task_model_results(model_names, task_names)
     task_agreement_table = combine_model_results(task_model_results)
+    if args.output_dir:
+        print(f"Saving agreement results to {args.output_dir}")
+        output_dir = Path(args.output_dir)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        for task, table in task_agreement_table.items():
+            output_path = output_dir / f"{task.replace('|', '_')}.csv"
+            table.to_csv(output_path, index=False)
+            print(f"Saved to {output_path}")
+
     task_fleiss_kappa: dict[str, Union[str, int, float]] = [
         {
             "task": task,
