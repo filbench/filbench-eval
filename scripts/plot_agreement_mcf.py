@@ -1,15 +1,14 @@
 import argparse
-
 import hashlib
-import pandas as pd
-import numpy as np
-from datasets import load_dataset
 from functools import reduce
-from statsmodels.stats.inter_rater import fleiss_kappa
 from typing import Union
 
-from scripts.utils import TASK_SET
+import numpy as np
+import pandas as pd
+from datasets import load_dataset
+from statsmodels.stats.inter_rater import fleiss_kappa
 
+from scripts.utils import TASK_SET
 
 MODEL_SET = {
     "sea": [
