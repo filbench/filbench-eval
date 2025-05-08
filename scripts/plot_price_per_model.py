@@ -20,6 +20,18 @@ def main():
     # fmt: on
 
     df = pd.read_csv(args.input_path)
+    df = df[df["Incomplete"]]  # It is inversed because of how toggle works in Gradio
+    df = df[df["# Parameters"] != -1]  # Only keep models where # Parameters != -1
+    df = df[["Model", "Average", "# Parameters", "Multilingual"]]
+    df = df[df["# Parameters"] <= args.max_params]
+    df = df.reset_index(drop=True)
+
+    fig, ax = plt.subplots(figsize=args.figsize)
+    colors = {
+        "Multilingual": COLORS.get("warm_blue"),
+        "SEA-Focused": COLORS.get("warm_crest"),
+    }
+    breakpoint()
 
 
 if __name__ == "__main__":
