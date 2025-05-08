@@ -44,7 +44,8 @@ def main():
             label=category,
         )
 
-    ax.set_xlabel("Inference Cost (\$/1M output tokens)")
+    ax.set_xscale("log")
+    ax.set_xlabel("Inference Cost (\$/1M output tokens), log")
     ax.set_ylabel("FilBench Score")
     ax.grid(color="gray", alpha=0.2, which="both")
 
