@@ -76,7 +76,7 @@ def main():
             positions=[i + 1],
             widths=0.4,
             patch_artist=True,
-            boxprops=dict(facecolor=colors[i], color="black"),
+            boxprops=dict(facecolor=colors[i], color="black", alpha=0.5),
             medianprops=dict(color="black"),
             whiskerprops=dict(color="black"),
             capprops=dict(color="black"),
