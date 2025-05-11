@@ -26,6 +26,13 @@ COLORS = {
     "slate": "#B5BDC8",
 }
 
+CATEGORY_2_CODE = {
+    "Cultural Knowledge": "CK",
+    "Classical NLP": "CN",
+    "Reading Comprehension": "RC",
+    "Generation": "GN",
+}
+
 CATEGORY_COLORS = {
     "CN": COLORS.get("blue"),
     "RC": COLORS.get("crest"),
