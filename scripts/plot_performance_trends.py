@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from scripts.utils import COLORS, PLOT_PARAMS
+from scripts.utils import PLOT_PARAMS, CATEGORY_COLORS, CATEGORY_2_CODE, COLORS
 
 plt.rcParams.update(PLOT_PARAMS)
 
@@ -15,7 +15,7 @@ def main():
     parser = argparse.ArgumentParser(description="Plot performance trends")
     parser.add_argument("--input_path", type=Path, help="Path to the leaderboard results.")
     parser.add_argument("--output_path", type=Path, default="plots/performance_trends.pdf", help="Path to save the results.")
-    parser.add_argument("--figsize", type=int, nargs=2, default=[6, 6], help="Matplotlib figure size.")
+    parser.add_argument("--figsize", type=int, nargs=2, default=[14, 7], help="Matplotlib figure size.")
     parser.add_argument("--svg", action="store_true", default=False, help="If set, will also save an SVG version.")
     args = parser.parse_args()
     # fmt: on
@@ -50,63 +50,64 @@ def main():
     print("Stdev", std)
 
     fig, ax = plt.subplots(figsize=args.figsize)
-    pd.plotting.parallel_coordinates(
-        df,
-        "Type",
-        cols=[
+    df_melted = df.melt(
+        id_vars=["Type"],
+        value_vars=[
             "Cultural Knowledge",
             "Classical NLP",
             "Reading Comprehension",
             "Generation",
         ],
-        color=COLORS.get("slate"),
-        alpha=0.6,
+        var_name="Category",
+        value_name="Score",
     )
 
-    # Draw best model
-    ax.plot(
-        [
-            best_model.get("Cultural Knowledge"),
-            best_model.get("Classical NLP"),
-            best_model.get("Reading Comprehension"),
-            best_model.get("Generation"),
-        ],
-        color=COLORS.get("warm_blue"),
-        linewidth=2,
-    )
+    # Create box plot
+    categories = df_melted["Category"].unique()
+    colors = [
+        CATEGORY_COLORS.get(CATEGORY_2_CODE.get(category, ""), "white")
+        for category in categories
+    ]
 
-    # Draw last model
-    ax.plot(
-        [
-            last_model.get("Cultural Knowledge"),
-            last_model.get("Classical NLP"),
-            last_model.get("Reading Comprehension"),
-            last_model.get("Generation"),
-        ],
-        color=COLORS.get("warm_crest"),
-        linewidth=2,
-    )
+    for i, category in enumerate(categories):
+        category_data = df_melted[df_melted["Category"] == category]
+        ax.boxplot(
+            category_data["Score"],
+            positions=[i + 1],
+            widths=0.4,
+            patch_artist=True,
+            boxprops=dict(facecolor=colors[i], color="black", alpha=0.8, linewidth=2),
+            medianprops=dict(color="black", linewidth=2),
+            whiskerprops=dict(color="black", linewidth=2),
+            capprops=dict(color="black", linewidth=2),
+            flierprops=dict(marker="o", color="black", alpha=0.5),
+        )
 
-    # Draw average
-    ax.plot(
-        [
-            average.get("Cultural Knowledge"),
-            average.get("Classical NLP"),
-            average.get("Reading Comprehension"),
-            average.get("Generation"),
-        ],
-        color="k",
-        linewidth=2,
-        linestyle="--",
-    )
+    ax.set_xticks(range(1, len(categories) + 1))
+    ax.set_xticklabels(categories)
+    ax.grid(True)
+
+    # Add scatter plot for individual scores
+    for idx, category in enumerate(df_melted["Category"].unique()):
+        category_data = df_melted[df_melted["Category"] == category]
+        ax.scatter(
+            x=[idx + 1] * len(category_data),
+            y=category_data["Score"],
+            alpha=0.6,
+            s=80,
+            color=COLORS.get("slate"),
+            edgecolor="k",
+        )
 
     # Remove clutter
-    ax.grid(False)
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.spines["bottom"].set_visible(False)
-    ax.spines["left"].set_visible(False)
-    ax.get_legend().remove()
+    ax.grid(True)
+    # ax.spines["top"].set_visible(False)
+    # ax.spines["right"].set_visible(False)
+    # ax.spines["bottom"].set_visible(False)
+    # ax.spines["left"].set_visible(False)
+    # ax.get_legend().remove()
+    fig.suptitle("")
+    ax.set_title("")
     ax.set_ylabel("Aggregated score\nacross tasks")
 
     output_path = Path(args.output_path)
