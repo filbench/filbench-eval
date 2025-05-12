@@ -27,7 +27,7 @@ GENERATION_RESULTS = {
         "w_ceb": {0: 7.79, 1: 11.31, 3: 11.60, 5: 12.29},
     },
     "Qwen/Qwen-2.5-7B-Instruct": {
-        "mult": "SEA-specific",
+        "mult": "Multilingual",
         "w_ceb": {0: 2.79, 1: 7.03, 3: 7.54, 5: 7.91},
     },
     "SeaLLMs/SeaLLMs-v3-1.5B-Chat": {
@@ -67,6 +67,7 @@ def main():
             linestyle="--",
         )
 
+    ax.grid(color="gray", alpha=0.2, which="both")
     ax.set_xticks([0, 1, 3, 5])
     ax.set_xlabel("Number of demonstrations ($k$-shot)")
     ax.set_ylabel("Generation Score")
