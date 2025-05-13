@@ -11,39 +11,39 @@ plt.rcParams.update(PLOT_PARAMS)
 GENERATION_RESULTS = {
     "CohereLabs/aya-expanse-32b": {
         "mult": "Multilingual",
-        "w_ceb": {0: 3.45, 1: 9.05, 3: 9.30, 5: 9.63},
+        "w_ceb": {0: 4.58, 1: 9.21, 3: 9.92, 5: 13.64},
     },
     "gpt-4o-2024-08-06": {
         "mult": "Multilingual",
-        "w_ceb": {0: 18.45, 1: 27.65, 3: 28.66, 5: 29.08},
+        "w_ceb": {0: 46.48, 1: 45.08, 3: 50.52, 5: 56.33},
     },
     "gpt-4o-mini": {
         "mult": "Multilingual",
-        "w_ceb": {0: 13.30, 1: 23.33, 3: 27.00, 5: 27.37},
+        "w_ceb": {0: 23.28, 1: 36.02, 3: 40.46, 5: 46.96},
     },
     "sail/Sailor2-20B-Chat": {
         "mult": "SEA-specific",
-        "w_ceb": {0: 7.79, 1: 11.31, 3: 11.60, 5: 12.29},
+        "w_ceb": {0: 19.47, 1: 18.02, 3: 19.10, 5: 21.90},
     },
     "Qwen/Qwen-2.5-7B-Instruct": {
         "mult": "Multilingual",
-        "w_ceb": {0: 2.79, 1: 7.03, 3: 7.54, 5: 7.91},
+        "w_ceb": {0: 4.19, 1: 6.86, 3: 7.49, 5: 10.58},
     },
     "SeaLLMs/SeaLLMs-v3-1.5B-Chat": {
         "mult": "SEA-specific",
-        "w_ceb": {0: 1.55, 1: 5.65, 3: 6.58, 5: 6.74},
+        "w_ceb": {0: 1.68, 1: 3.61, 3: 3.80, 5: 7.34},
     },
     "SeaLLMs/SeaLLMs-v3-7B-Chat": {
         "mult": "SEA-specific",
-        "w_ceb": {0: 2.64, 1: 8.15, 3: 8.71, 5: 8.96},
+        "w_ceb": {0: 3.62, 1: 7.02, 3: 7.88, 5: 11.28},
     },
     "neulab/Pangea-7B": {
         "mult": "Multilingual",
-        "w_ceb": {0: 2.68, 1: 6.39, 3: 6.69, 5: 6.78},
+        "w_ceb": {0: 3.15, 1: 6.11, 3: 5.37, 5: 8.83},
     },
     "aisingapore/llama3.1-8b-cpt-sealionv3-instruct": {
         "mult": "Multilingual",
-        "w_ceb": {0: 5.54, 1: 9.98, 3: 10.43, 5: 10.42},
+        "w_ceb": {0: 10.05, 1: 15.09, 3: 14.68, 5: 21.01},
     },
 }
 
