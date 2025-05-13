@@ -2,7 +2,6 @@ import argparse
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-import pandas as pd
 
 from scripts.utils import COLORS, PLOT_PARAMS
 
@@ -33,6 +32,18 @@ GENERATION_RESULTS = {
     "SeaLLMs/SeaLLMs-v3-1.5B-Chat": {
         "mult": "SEA-specific",
         "w_ceb": {0: 1.55, 1: 5.65, 3: 6.58, 5: 6.74},
+    },
+    "SeaLLMs/SeaLLMs-v3-7B-Chat": {
+        "mult": "SEA-specific",
+        "w_ceb": {0: 2.64, 1: 8.15, 3: 8.71, 5: 8.96},
+    },
+    "neulab/Pangea-7B": {
+        "mult": "Multilingual",
+        "w_ceb": {0: 2.68, 1: 6.39, 3: 6.69, 5: 6.78},
+    },
+    "aisingapore/llama3.1-8b-cpt-sealionv3-instruct": {
+        "mult": "Multilingual",
+        "w_ceb": {0: 5.54, 1: 9.98, 3: 10.43, 5: 10.42},
     },
 }
 
