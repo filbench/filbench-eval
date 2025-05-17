@@ -42,7 +42,7 @@ GENERATION_RESULTS = {
         "w_ceb": {0: 3.15, 1: 6.11, 3: 5.37, 5: 8.83},
     },
     "aisingapore/llama3.1-8b-cpt-sealionv3-instruct": {
-        "mult": "Multilingual",
+        "mult": "SEA-specific",
         "w_ceb": {0: 10.05, 1: 15.09, 3: 14.68, 5: 21.01},
     },
 }
@@ -82,7 +82,7 @@ def main():
     ax.set_xticks([0, 1, 3, 5])
     ax.set_xlabel("Number of demonstrations ($k$-shot)")
     ax.set_ylabel("Generation Score")
-    ax.set_ylim(top=35)
+    ax.set_ylim(top=60)
 
     output_path = Path(args.output_path)
 
