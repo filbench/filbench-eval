@@ -1,3 +1,28 @@
+[project]
+name = "filbench-eval"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "ljvmiranda921", email = "ljvmiranda@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "langcodes>=3.5.0",
+    "langdetect>=1.0.9",
+    "lighteval",
+    "spacy>=3.8.7",
+    "stanza>=1.10.1",
+    "wheel>=0.45.1",
+]
+
+[project.scripts]
+filbench = "filbench_eval:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [tool.ruff]
 # Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
 select = ["E", "F"]
@@ -12,3 +37,6 @@ multi_line_output = 9
 
 [tool.black]
 line-length = 88
+
+[tool.uv.sources]
+lighteval = { git = "ssh://git@github.com/filbench/lighteval" }
