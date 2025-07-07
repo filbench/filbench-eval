@@ -9,7 +9,7 @@ import pandas as pd
 from datasets import load_dataset
 from statsmodels.stats.inter_rater import fleiss_kappa
 
-from scripts.utils import TASK_SET
+from analysis.utils import TASK_SET
 
 MODEL_SET = {
     "sea": [

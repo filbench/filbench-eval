@@ -4,7 +4,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from scripts.utils import COLORS, PLOT_PARAMS
+from analysis.utils import COLORS, PLOT_PARAMS
 
 plt.rcParams.update(PLOT_PARAMS)
 
@@ -13,9 +13,9 @@ def main():
     # fmt: off
     parser = argparse.ArgumentParser(description="Plot paper data through the years.")
     parser.add_argument("--input_path", type=Path, help="Path to the paper annotations file.")
-    parser.add_argument("--output_path", type=Path, default="plots/survey_topics.pdf", help="Output path to save the charts.")
+    parser.add_argument("--output_path", type=Path, default="plots/survey_historical.pdf", help="Output path to save the charts.")
     parser.add_argument("--aggregate", action="store_true", default=False, help="If set, do some aggregation.")
-    parser.add_argument("--figsize", type=int, nargs=2, default=[7, 10], help="Matplotlib figure size.")
+    parser.add_argument("--figsize", type=int, nargs=2, default=[10, 6], help="Matplotlib figure size.")
     parser.add_argument("--svg", action="store_true", default=False, help="If set, will also save an SVG version.")
     args = parser.parse_args()
     # fmt: on
@@ -27,15 +27,22 @@ def main():
     df["GPT-4 output"] = df["GPT-4 output"].apply(
         lambda x: str(x).title().replace("Nlp", "NLP")
     )
-    df["GPT-4 output"].value_counts().sort_values().plot.barh(
-        ax=ax, color=COLORS.get("warm_blue"), edgecolor="k"
+    # Remove 2024
+    df = df[df["year"] != 2024].reset_index(drop=True)
+    year_counts = df.groupby(["year", "GPT-4 output"]).size().unstack(fill_value=0)
+    colormap = plt.get_cmap("tab20", len(year_counts.columns))
+    colors = [colormap(i) for i in range(len(year_counts.columns))]
+    year_counts.plot(kind="bar", stacked=True, ax=ax, color=colors, edgecolor="k")
+    # handles, labels = ax.get_legend_handles_labels()
+    ax.legend(
+        ncol=4,
+        title="NLP Sub-Field",
+        loc="lower center",
+        bbox_to_anchor=(0, -2.0),
+        frameon=False,
     )
-
-    ax.set_title("NLP Sub-Field")
-    ax.set_ylabel("")
-    ax.set_xlabel(
-        "Number of papers published\nthat includes any Philippine language\n(2000-2023)"
-    )
+    ax.set_xticklabels(year_counts.index.astype(int), rotation=90)
+    ax.set_xlabel("Year")
 
     output_path = Path(args.output_path)
     plt.tight_layout()
