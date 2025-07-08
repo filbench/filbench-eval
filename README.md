@@ -7,7 +7,7 @@
 |
 <b><a href="https://github.com/filbench/lighteval">💻 Evaluation Runner (Lighteval)</a></b>
 |
-<b><a href="">📄 Paper (Coming soon!)</a></b>
+<b><a href="">📄 Paper</a></b>
 </p>
 
 This repository contains all relevant tools and experiments for FilBench, an Open LLM Evaluation Suite and leaderboard for Filipino.
