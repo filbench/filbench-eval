@@ -18,7 +18,7 @@ dependencies = [
 ]
 
 [project.scripts]
-filbench = "filbench_eval:main"
+filbench = "filbench_eval:app"
 
 [build-system]
 requires = ["hatchling"]
