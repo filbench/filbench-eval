@@ -32,7 +32,7 @@ uv sync
 ```
 
 These steps will clone our `lighteval` fork as a submodule and install necessary dependencies.
-Since the main branch of `lighteval` is still not stable, we're currently deefaulting on our own working fork.
+Since the main branch of `lighteval` is still not stable, we're currently defaulting to our working fork.
 In the end, you should have access to the following tools:
 
 1. **lighteval**: this is the main evaluation runner to use for launching evaluation jobs.
@@ -52,7 +52,7 @@ python3 -m lighteval tasks inspect "filbench|cebuaner_ceb_mcf|0|0" \
 ```
 
 > [!IMPORTANT]
-> You must run the `lighteval` command (1) within the `lighteval` submodule and (2) using the `python -m ...` prefix. If you encounter any issues with the installation (it can be a bit tricky), please [open an Issue](https://github.com/filbench/filbench-eval/issues/new) in this repository.
+> You must run the `lighteval` command (1) within the `lighteval` submodule and (2) using the `python -m ...` prefix. If you encounter any installation issues, please [open an Issue](https://github.com/filbench/filbench-eval/issues/new) in this repository.
 
 ## 👩‍💻 Usage
 
