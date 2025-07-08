@@ -1,5 +1,6 @@
-import typer
 from pathlib import Path
+
+import typer
 
 app = typer.Typer(
     name="filbench",
