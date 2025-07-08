@@ -41,3 +41,11 @@ line-length = 88
 
 [tool.uv.sources]
 lighteval = { git = "ssh://git@github.com/filbench/lighteval" }
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "isort>=6.0.1",
+    "pre-commit>=4.2.0",
+    "ruff>=0.12.2",
+]
