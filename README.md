@@ -88,21 +88,30 @@ filbench compute-score UD-Filipino/details_aisingapore__Llama-SEA-LION-v3.5-70B-
 
 ### Submitting to the Leaderboard
 
-We also maintain a [leaderboard]() to track the progress in Filipino NLP.
+We also maintain a [leaderboard](https://huggingface.co/spaces/UD-Filipino/filbench-leaderboard) to track the progress in Filipino NLP.
 By default, this command will output a JSON file called `scores_<HF_ORG>___<MODEL_NAME>.json` that contains the FilBench score and its breakdown across categories and tasks.
 You can then submit these results by running the command below and following the prompts:
 
 ```sh
 filbench submit "scores_<HF_ORG>__MODEL_NAME.json"
 # Name / Organization:
-# Contact E-mail:
+# E-mail:
 # Model Name (to show in leaderboard):
-# Multilinguality ([1] Multilingual / [2] SEA-Specific / [3] Monolingual):
-# Model Type ([1] Preference-aligned / [2] SFT / [3] Base):
+# Multilinguality (Multilingual, SEA-Specific, Monolingual):
+# Model Type (Preference-aligned, SFT, Base):
 # Number of parameters:
 ```
 
-This will then make a PR to the `UD-Filipino/filbench-submissions` dataset.
+This will then make a PR to the `UD-Filipino/filbench-results-submission` dataset.
 The approval process is done manually, and we might contact you to clarify a few things.
+
+<details>
+
+<summary>💡 On multiple submissions</summary>
+
+If you want to update your scores for a specific model in the leaderboard, you just need to rerun the `submit` command and input the **same** organization and model name.
+Internally, we hash these variables together and show the latest result.
+
+</details>
 
 ## 📜 Citation

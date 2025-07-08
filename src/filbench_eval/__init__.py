@@ -5,6 +5,7 @@ import typer
 from wasabi import msg
 
 from .compute_score import compute_score, pretty_report
+from .submit import submit, status
 
 app = typer.Typer(
     name="filbench",
@@ -37,10 +38,13 @@ def compute_score_cmd(
 def submit_cmd(
     # fmt: off
     json_path: Path = typer.Argument(..., help="Path to the JSON file containing the results."),
+    dry_run: bool = typer.Option(False, "--dry-run", help="Run the submission process without actually submitting.")
     # fmt: on
 ) -> None:
     """Submit the results to the leaderboard."""
-    print(f"Submitting {json_path}...")
+    dataset = "UD-Filipino/filbench-results-submission"
+    output = submit(json_path, submissions_dataset=dataset, dry_run=dry_run)
+    status(output.get("display_metadata"), submissions_dataset=dataset, dry_run=dry_run)
 
 
 if __name__ == "__main__":
