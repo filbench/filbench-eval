@@ -13,6 +13,7 @@ dependencies = [
     "lighteval",
     "spacy>=3.8.7",
     "stanza>=1.10.1",
+    "typer>=0.16.0",
     "wheel>=0.45.1",
 ]
 

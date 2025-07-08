@@ -376,6 +376,7 @@ dependencies = [
     { name = "lighteval" },
     { name = "spacy" },
     { name = "stanza" },
+    { name = "typer" },
     { name = "wheel" },
 ]
 
@@ -386,6 +387,7 @@ requires-dist = [
     { name = "lighteval", git = "ssh://git@github.com/filbench/lighteval" },
     { name = "spacy", specifier = ">=3.8.7" },
     { name = "stanza", specifier = ">=1.10.1" },
+    { name = "typer", specifier = ">=0.16.0" },
     { name = "wheel", specifier = ">=0.45.1" },
 ]
 
