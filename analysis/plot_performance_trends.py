@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from analysis.utils import PLOT_PARAMS, CATEGORY_COLORS, CATEGORY_2_CODE, COLORS
+from analysis.utils import CATEGORY_2_CODE, CATEGORY_COLORS, COLORS, PLOT_PARAMS
 
 plt.rcParams.update(PLOT_PARAMS)
 

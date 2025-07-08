@@ -1,0 +1,3 @@
+[submodule "lighteval"]
+	path = lighteval
+	url = git@github.com:filbench/lighteval.git
