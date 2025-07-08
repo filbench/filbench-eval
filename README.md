@@ -112,4 +112,21 @@ The approval process is done manually, and we might contact you to clarify a few
 > [!TIP]
 > You can set the `--dry-run` flag to double-check whether the details you entered are correct.
 
-## 📜 Citation
+## 📜 Team
+
+This work was done by Lj V. Miranda (@ljvmiranda921), Elyanah Aco (@elyanah-aco), Conner Manuel (@connermanuel), Blaise Cruz (@jcblaisecruz02), and Joseph Imperial (@imperialite). To cite our work, please use the following bibTeX entry:
+
+```bib
+@article{filbench,
+  title={Fil{B}ench: {C}an {LLM}s {U}nderstand and {G}enerate {F}ilipino?},
+  author={Miranda, Lester James V and Aco, Elyanah and Manuel, Conner and Cruz, Jan Christian Blaise and Imperial, Joseph Marvin},
+  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  year={2025}
+}
+```
+
+## 🙏 Acknowledgments
+
+We would like to thank [Cohere Labs](https://cohere.com/research) for providing credits through the [Cohere Research Grant](https://cohere.com/research/grants) to run the Aya model series, and [Together AI](https://together.ai) for additional computational credits for running several open models.
+We also acknowledge the Hugging Face team, particularly the OpenEvals team (Clémentine Fourrier (@clefourrier) and Nathan Habib (@NathanHB)) and Daniel van Strien (@davanstrien), for their support in publishing the FilBench blog post.
+Finally, we thank the reviewers from the May ARR cycle for their helpful feedback and insightful comments that improved our paper.
