@@ -105,13 +105,11 @@ filbench submit "scores_<HF_ORG>__MODEL_NAME.json"
 This will then make a PR to the `UD-Filipino/filbench-results-submission` dataset.
 The approval process is done manually, and we might contact you to clarify a few things.
 
-<details>
+> [!NOTE]
+> If you want to update your scores for a specific model in the leaderboard, you just need to rerun the `submit` command and input the **same** organization and model name.
+> Internally, we hash these variables together and show the latest result.
 
-<summary>💡 On multiple submissions</summary>
-
-If you want to update your scores for a specific model in the leaderboard, you just need to rerun the `submit` command and input the **same** organization and model name.
-Internally, we hash these variables together and show the latest result.
-
-</details>
+> [!TIP]
+> You can set the `--dry-run` flag to double-check whether the details you entered are correct.
 
 ## 📜 Citation
