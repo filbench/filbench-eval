@@ -5,7 +5,7 @@ import typer
 from wasabi import msg
 
 from .compute_score import compute_score, pretty_report
-from .submit import submit, status
+from .submit import status, submit
 
 app = typer.Typer(
     name="filbench",
