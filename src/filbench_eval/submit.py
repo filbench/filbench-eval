@@ -21,33 +21,35 @@ def submit(
     with open(json_path, "r") as f:
         results_dict = json.load(f)
 
-    org: str = typer.prompt("Name / Organization")
-    contact: str = typer.prompt("E-mail")
-    model_name: str = typer.prompt("Model Name (to show in leaderboard)")
+    # fmt: off
+    hf_id: str = typer.prompt("🤗 Model Name or HuggingFace ID (e.g., Qwen/Qwen3-32B)")
+    contact: str = typer.prompt("✉️  E-mail")
+    model_url_input = input("🌐 Model URL (optional, press Enter to skip): ").strip()
+    if model_url_input:
+        model_url = model_url_input
+        typer.echo(f"Using URL: {model_url}")
+    else:
+        model_url = f"https://huggingface.co/{hf_id}"
+        typer.echo(f"Using default URL: {model_url}")
 
     m_choices = click.Choice(["Multilingual", "SEA-Specific", "Monolingual"])
-    multilinguality: click.Choice = typer.prompt(
-        "Multilinguality", show_choices=True, type=m_choices
-    )
-
+    multilinguality: click.Choice = typer.prompt("🌎 Multilinguality", show_choices=True, type=m_choices)
     t_choices = click.Choice(["Base", "SFT", "Preference-aligned", "Reasoning"])
-    model_type: click.Choice = typer.prompt(
-        "Model Type", show_choices=True, type=t_choices
-    )
-
-    num_params: int = typer.prompt("Number of parameters", type=float)
+    model_type: click.Choice = typer.prompt("⭕ Model Type", show_choices=True, type=t_choices)
+    num_params: int = typer.prompt("📈 Number of parameters", type=float)
+    # fmt: on
 
     results_dict.update(
         {
             "display_metadata": {
-                "org": org,
-                "model_name": model_name,
+                "hf_id": hf_id,
+                "url": model_url,
                 "contact": contact,
                 "multilinguality": multilinguality,
                 "model_type": model_type,
                 "num_params": num_params,
                 "submission_date": datetime.now().isoformat(),
-                "hash": hashlib.sha256(f"{org}{model_name}".encode()).hexdigest(),
+                "hash": hashlib.sha256(f"{hf_id}".encode()).hexdigest(),
             }
         }
     )
@@ -59,8 +61,8 @@ def submit(
     if not dry_run:
         msg.info(f"Submitting files to {submissions_dataset}")
         api = HfApi()
-        commit_message = f"FilBench Submission by {org} ({model_name})"
-        commit_description = f"Filbench score: {results_dict.get('filbench_score')}, Category Score: {results_dict.get('category_scores')}"
+        commit_message = f"[Submission] FilBench results for {hf_id})"
+        commit_description = f"Filbench score: {results_dict.get('filbench_score')},\nCategory Score: {results_dict.get('category_scores')}"
         api.upload_file(
             path_or_fileobj=str(json_path),
             path_in_repo=str(json_path),
