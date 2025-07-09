@@ -94,12 +94,8 @@ You can then submit these results by running the command below and following the
 
 ```sh
 filbench submit "scores_<HF_ORG>__MODEL_NAME.json"
-# Name / Organization:
-# E-mail:
-# Model Name (to show in leaderboard):
-# Multilinguality (Multilingual, SEA-Specific, Monolingual):
-# Model Type (Preference-aligned, SFT, Base):
-# Number of parameters:
+# 🤗 Model Name or HuggingFace ID (e.g., Qwen/Qwen3-32B):
+# ...
 ```
 
 This will then make a PR to the `UD-Filipino/filbench-results-submission` dataset.
