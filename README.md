@@ -35,7 +35,7 @@ These steps will clone our `lighteval` fork as a submodule and install necessary
 In the end, you should have access to the following tools:
 
 1. **lighteval**: this is the main evaluation runner to use for launching evaluation jobs.
-2. **filbench**: a lightweight CLI for computing the FilBench score and reporting results to the leaderboard (_In-progress_).
+2. **filbench**: a lightweight CLI for computing the FilBench score and reporting results to the leaderboard.
 
 You can check if your installation works by running the following commands:
 
