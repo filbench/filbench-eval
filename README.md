@@ -32,7 +32,6 @@ uv sync
 ```
 
 These steps will clone our `lighteval` fork as a submodule and install necessary dependencies.
-Since the main branch of `lighteval` is still not stable, we're currently defaulting to our working fork.
 In the end, you should have access to the following tools:
 
 1. **lighteval**: this is the main evaluation runner to use for launching evaluation jobs.
