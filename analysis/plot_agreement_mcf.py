@@ -1,3 +1,6 @@
+# /// script
+# dependencies = ["matplotlib", "pandas", "scipy", "statsmodels", "datasets"]
+# ///
 import argparse
 import hashlib
 from functools import reduce

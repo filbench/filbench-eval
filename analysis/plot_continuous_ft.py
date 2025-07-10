@@ -1,3 +1,6 @@
+# /// script
+# dependencies = ["matplotlib", "numpy", "pandas"]
+# ///
 import argparse
 from pathlib import Path
 
