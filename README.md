@@ -109,7 +109,11 @@ The approval process is done manually, and we might contact you to clarify a few
 
 ## 📜 Team Members
 
-This work was done by Lj V. Miranda ([@ljvmiranda921](https://github.com/ljvmiranda921)), Elyanah Aco ([@elyanah-aco](https://github.com/elyanah-aco)), Conner Manuel ([@connermanuel](https://github.com/connermanuel)), Blaise Cruz ([@jcblaisecruz02](https://github.com/jcblaisecruz02)), and Joseph Imperial ([@imperialite](https://github.com/imperialite)). To cite our work, please use the following bibTeX entry:
+
+
+This work was done by Lj V. Miranda ([@ljvmiranda921](https://github.com/ljvmiranda921)), Elyanah Aco ([@elyanah-aco](https://github.com/elyanah-aco)), Conner Manuel ([@connermanuel](https://github.com/connermanuel)), Blaise Cruz ([@jcblaisecruz02](https://github.com/jcblaisecruz02)), and Joseph Imperial ([@imperialite](https://github.com/imperialite)). 
+For any questions, please reach out to us via filbench-eval@googlegroups.com or through our [GitHub Issues](https://github.com/filbench/filbench-eval/issues).
+To cite our work, please use the following bibTeX entry:
 
 ```bib
 @article{filbench,
