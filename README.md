@@ -109,7 +109,7 @@ The approval process is done manually, and we might contact you to clarify a few
 
 ## 📜 Team
 
-This work was done by Lj V. Miranda ([@ljvmiranda921](https://github.com/ljvmiranda921)), Elyanah Aco ([@elyanah-aco](https://github.com/elyanah-aco)), Conner Manuel ([@connermanuel](https://github.com/connermanuel)), Blaise Cruz ([@jcblaisecruz02](https://github.com/jcblaisecruz02)), and Joseph Imperial ([@imperialite](https://github.com/imperialite)). 
+This work was done by [@ljvmiranda921](https://github.com/ljvmiranda921), [@elyanah-aco](https://github.com/elyanah-aco), [@connermanuel](https://github.com/connermanuel), [@jcblaisecruz02](https://github.com/jcblaisecruz02), and [@imperialite](https://github.com/imperialite). 
 For any questions, please reach out to us via filbench-eval@googlegroups.com or through our [GitHub Issues](https://github.com/filbench/filbench-eval/issues).
 To cite our work, please use the following bibTeX entry:
 
@@ -125,4 +125,4 @@ To cite our work, please use the following bibTeX entry:
 ## 🙏 Acknowledgments
 
 We would like to thank [Cohere Labs](https://cohere.com/research) for providing credits through the [Cohere Research Grant](https://cohere.com/research/grants) to run the Aya model series, and [Together AI](https://together.ai) for additional computational credits for running several open models.
-We also acknowledge the Hugging Face team, particularly the OpenEvals team (Clémentine Fourrier [@clefourrier](https://github.com/clefourrier) and Nathan Habib [@NathanHB](https://github.com/NathanHB)) and Daniel van Strien [@davanstrien](https://github.com/davanstrien), for their support in publishing the FilBench blog post.
+We also acknowledge the Hugging Face team, particularly the OpenEvals team ( [@clefourrier](https://github.com/clefourrier) and [@NathanHB](https://github.com/NathanHB)) and [@davanstrien](https://github.com/davanstrien), for their support in publishing the FilBench blog post.
