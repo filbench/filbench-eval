@@ -7,7 +7,7 @@
 |
 <b><a href="https://github.com/filbench/lighteval">💻 Evaluation Runner (Lighteval)</a></b>
 |
-<b><a href="">📄 Paper</a></b>
+<b><a href="https://arxiv.org/abs/2508.03523">📄 Paper</a></b>
 </p>
 
 This repository contains all relevant tools and experiments for FilBench, an Open LLM Evaluation Suite and leaderboard for Filipino.
@@ -117,7 +117,7 @@ To cite our work, please use the following bibTeX entry:
 @article{filbench,
   title={Fil{B}ench: {C}an {LLM}s {U}nderstand and {G}enerate {F}ilipino?},
   author={Miranda, Lester James V and Aco, Elyanah and Manuel, Conner and Cruz, Jan Christian Blaise and Imperial, Joseph Marvin},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  journal={arXiv preprint arXiv:2508.03523},
   year={2025}
 }
 ```
