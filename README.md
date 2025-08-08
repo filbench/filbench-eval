@@ -16,8 +16,8 @@ Then, we evaluated over 20 models of different parameters, model families, and m
 
 ## 📰 News
 
-- [2025-08-08] FilBench is now an official part of HuggingFace's Community Tasks in [Lighteval](https://github.com/huggingface/lighteval)! You can also read the corresponding blog post [here]().
-- [2025-08-01] We officially introduce FilBench! You can read more details in our [report]().
+- [2025-08-15] FilBench is now an official part of HuggingFace's Community Tasks in [Lighteval](https://github.com/huggingface/lighteval)! You can also read the corresponding blog post [here]().
+- [2025-08-01] We officially introduce FilBench! You can read more details in our [paper](https://arxiv.org/abs/2508.03523).
 
 ## 🔧 Installation
 
