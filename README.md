@@ -16,6 +16,7 @@ Then, we evaluated over 20 models of different parameters, model families, and m
 
 ## 📰 News
 
+- [2025-08-20] FilBench was accepted at EMNLP 2025 Main! See you in Suzhou!
 - [2025-08-15] FilBench is now an official part of HuggingFace's Community Tasks in [Lighteval](https://github.com/huggingface/lighteval)! You can also find out more about the project in this [HuggingFace blog post](https://huggingface.co/blog/filbench).
 - [2025-08-01] We officially introduce FilBench! You can read more details in our [paper](https://arxiv.org/abs/2508.03523).
 
