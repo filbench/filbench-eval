@@ -115,11 +115,21 @@ For any questions, please reach out to us via filbench-eval@googlegroups.com or 
 To cite our work, please use the following bibTeX entry:
 
 ```bib
-@article{filbench,
-  title={Fil{B}ench: {C}an {LLM}s {U}nderstand and {G}enerate {F}ilipino?},
-  author={Miranda, Lester James V and Aco, Elyanah and Manuel, Conner and Cruz, Jan Christian Blaise and Imperial, Joseph Marvin},
-  journal={arXiv preprint arXiv:2508.03523},
-  year={2025}
+@inproceedings{miranda-etal-2025-filbench,
+    title = "{F}il{B}ench: Can {LLM}s Understand and Generate {F}ilipino?",
+    author = "Miranda, Lester James Validad  and
+      Aco, Elyanah  and
+      Manuel, Conner G.  and
+      Cruz, Jan Christian Blaise  and
+      Imperial, Joseph Marvin",
+    booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2025",
+    address = "Suzhou, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.emnlp-main.127/",
+    pages = "2496--2529",
+    ISBN = "979-8-89176-332-6",
 }
 ```
 
