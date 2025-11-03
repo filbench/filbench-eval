@@ -7,7 +7,7 @@
 |
 <b><a href="https://github.com/filbench/lighteval">💻 Evaluation Runner (Lighteval)</a></b>
 |
-<b><a href="https://arxiv.org/abs/2508.03523">📄 Paper</a></b>
+<b><a href="https://aclanthology.org/2025.emnlp-main.127/">📄 Paper</a></b>
 </p>
 
 This repository contains all relevant tools and experiments for FilBench, an Open LLM Evaluation Suite and leaderboard for Filipino.
