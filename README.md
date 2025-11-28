@@ -3,7 +3,7 @@
 # FilBench: Open LLM Eval Suite for Filipino
 
 <p align="left">
-<b><a href="https://huggingface.co/spaces/UD-Filipino/filbench-leaderboard">🥇 Leaderboard</a></b>
+<b><a href="https://huggingface.co/spaces/filbench/filbench-leaderboard">🥇 Leaderboard</a></b>
 |
 <b><a href="https://github.com/filbench/lighteval">💻 Evaluation Runner (Lighteval)</a></b>
 |
@@ -77,18 +77,18 @@ When run in parallel, the shortest task can take around 5 minutes and the longes
 ### Computing the FilBench Score
 
 Your results should be saved in `HF_ORG/MODEL_NAME`.
-For example, the results for aisingapore/SEA-LION-v3.5-70B-R are stored in [`UD-Filipino/details_aisingapore__Llama-SEA-LION-v3.5-70B-R_private`](https://huggingface.co/datasets/UD-Filipino/details_aisingapore__Llama-SEA-LION-v3.5-70B-R_private).
+For example, the results for aisingapore/SEA-LION-v3.5-70B-R are stored in [`filbench/details_aisingapore__Llama-SEA-LION-v3.5-70B-R_private`](https://huggingface.co/datasets/filbench/details_aisingapore__Llama-SEA-LION-v3.5-70B-R_private).
 To compute the FilBench score, run the following command:
 
 ```sh
 filbench compute-score <HF_ORG>/<MODEL_NAME>
 # For example:
-filbench compute-score UD-Filipino/details_aisingapore__Llama-SEA-LION-v3.5-70B-R_private
+filbench compute-score filbench/details_aisingapore__Llama-SEA-LION-v3.5-70B-R_private
 ```
 
 ### Submitting to the Leaderboard
 
-We also maintain a [leaderboard](https://huggingface.co/spaces/UD-Filipino/filbench-leaderboard) to track the progress in Filipino NLP.
+We also maintain a [leaderboard](https://huggingface.co/spaces/filbench/filbench-leaderboard) to track the progress in Filipino NLP.
 By default, this command will output a JSON file called `scores_<HF_ORG>___<MODEL_NAME>.json` that contains the FilBench score and its breakdown across categories and tasks.
 You can then submit these results by running the command below and following the prompts:
 
@@ -98,7 +98,7 @@ filbench submit "scores_<HF_ORG>__MODEL_NAME.json"
 # ...
 ```
 
-This will then make a PR to the `UD-Filipino/filbench-results-submission` dataset.
+This will then make a PR to the `filbench/filbench-results-submission` dataset.
 The approval process is done manually, and we might contact you to clarify a few things.
 
 > [!NOTE]

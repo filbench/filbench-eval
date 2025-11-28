@@ -42,7 +42,7 @@ def submit_cmd(
     # fmt: on
 ) -> None:
     """Submit the results to the leaderboard."""
-    dataset = "UD-Filipino/filbench-results-submission"
+    dataset = "filbench/filbench-results-submission"
     output = submit(json_path, submissions_dataset=dataset, dry_run=dry_run)
     status(output.get("display_metadata"), submissions_dataset=dataset, dry_run=dry_run)
 
