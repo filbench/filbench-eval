@@ -14,7 +14,7 @@ from wasabi import msg
 
 def submit(
     json_path: Path,
-    submissions_dataset: str = "UD-Filipino/filbench-results-submission",
+    submissions_dataset: str = "filbench/filbench-results-submission",
     dry_run: bool = False,
 ) -> dict[str, Any]:
     print(f"Submitting {json_path}...")

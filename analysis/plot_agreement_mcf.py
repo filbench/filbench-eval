@@ -94,7 +94,7 @@ def get_task_model_results(
     for task in task_names:
         task_model_results[task] = {}
         for model in model_names:
-            results_ds_name = f"UD-Filipino/details_{format_model(model)}_private"
+            results_ds_name = f"filbench/details_{format_model(model)}_private"
             print(f"Loading results for {model} ({task})...")
             # fmt: off
             df = load_dataset(results_ds_name, format_task(task), split="latest").to_pandas()
