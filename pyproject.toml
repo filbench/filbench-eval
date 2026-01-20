@@ -13,6 +13,7 @@ dependencies = [
     "langdetect>=1.0.9",
     "lighteval",
     "pandas>=2.3.1",
+    "ray>=2.53.0",
     "rich>=14.0.0",
     "spacy>=3.8.7",
     "stanza>=1.10.1",
