@@ -12,6 +12,7 @@ dependencies = [
     "langcodes>=3.5.0",
     "langdetect>=1.0.9",
     "lighteval",
+    "more-itertools>=10.8.0",
     "pandas>=2.3.1",
     "ray>=2.53.0",
     "rich>=14.0.0",
