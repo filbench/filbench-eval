@@ -1,0 +1,33 @@
+#!/bin/bash
+#SBATCH --job-name=isambard-job
+#SBATCH --gpus=1
+#SBATCH --output=gpu-%j.log
+#SBATCH --time=10:00:00
+
+module load cray-python
+
+hostname
+nvidia-smi --list-gpus
+
+export HF_HOME=$PROJECTDIR/ljvm2/huggingface
+export HF_HUB_CACHE=$PROJECTDIR/ljvm2/hf_hub
+export VLLM_CACHE_ROOT=$PROJECTDIR/ljvm2/vllm
+
+# Get job script from arguments
+JOB_SCRIPT=$1
+shift
+
+if [ -z "$JOB_SCRIPT" ]; then
+    echo "Error: No job script specified"
+    echo "Usage: sbatch slurm_submit.isambard <job_script> [args...]"
+    exit 1
+fi
+
+if [ ! -f "$JOB_SCRIPT" ]; then
+    echo "Error: Job script '$JOB_SCRIPT' not found"
+    exit 1
+fi
+
+source .venv/bin/activate
+# Execute the job script with remaining arguments
+bash "$JOB_SCRIPT" "$@"
