@@ -16,6 +16,7 @@ Then, we evaluated over 20 models of different parameters, model families, and m
 
 ## 📰 News
 
+- [2026-09-06] FilBench was mentioned in The Guidon's feature: [Lost in translation: LLMs for the Filipino Language](https://theguidon.com/2026/08/lost-in-translation-llms-for-the-filipino-language/). The Guidon is the official publication of the Ateneo de Manila University in the Philippines (where Lj and Elyanah are alums)!
 - [2026-05-23] Lj talked about FilBench at the [Analytics & AI Association of the Philippines (AAP)](https://www.aap.ph/). Check out [the slides](https://docs.google.com/presentation/d/1KOdSsFsk8io59bKRzwU-4u1iFNxDumlSNLQfUYgbTfU/edit?usp=sharing) and Lj's [post](https://ljvmiranda921.github.io/notebook/2026/05/23/on-what-it-takes/).
 - [2025-08-20] FilBench was accepted at EMNLP 2025 Main! See you in Suzhou!
 - [2025-08-15] FilBench is now an official part of HuggingFace's Community Tasks in [Lighteval](https://github.com/huggingface/lighteval)! You can also find out more about the project in this [HuggingFace blog post](https://huggingface.co/blog/filbench).
